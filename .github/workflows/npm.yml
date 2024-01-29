@@ -1,0 +1,31 @@
+name: Node.js CI with Docker
+
+on:
+  push:
+    branches:
+      - main  # Adjust the branch as needed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'  # Adjust the Node.js version as needed
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Build Docker Image
+      run: docker build -t your-docker-username/your-app-name:latest .
+
+    - name: Log in to Docker Hub
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Push Docker Image to Docker Hub
+      run: docker push shivang1012/node-test
