@@ -24,8 +24,8 @@ jobs:
     - name: Build Docker Image
       run: docker build -t your-docker-username/your-app-name:latest .
 
-    - name: Log in to Docker Hub
-      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-
+    - name: Login to Docker Hub
+      run: echo "${{ secrets.DOCKER_ACCESS_TOKEN }}" | docker login --username ${{secrets.DOCKER_USERNAME}} --password-stdin
+        
     - name: Push Docker Image to Docker Hub
       run: docker push shivang1012/node-test
