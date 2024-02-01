@@ -23,7 +23,7 @@ jobs:
       run: npm install
 
     - name: Build Docker Image
-      run:run: docker build --build-arg MY_VARIABLE="${{ env.MY_VARIABLE }} -t shivang1012/node-test .
+      run: docker build --build-arg MY_VARIABLE="${{ env.MY_VARIABLE }} -t shivang1012/node-test .
 
     - name: Login to Docker Hub
       uses: docker/login-action@v3
