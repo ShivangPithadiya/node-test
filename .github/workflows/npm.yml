@@ -9,6 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      MY_VARIABLE: ${{ env.MY_ENV }}
+
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
