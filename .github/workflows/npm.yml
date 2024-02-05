@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: "production"
     steps:
-      - name: Wait for two approvals
+      - name: Wait for one approvals
 
   post-approval:
     needs: approval-wait
