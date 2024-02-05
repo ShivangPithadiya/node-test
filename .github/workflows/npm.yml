@@ -22,16 +22,16 @@ jobs:
     - name: Install Dependencies
       run: npm install
       
-  approval-wait:
-    # if: contains(github.event.head_commit.message, 'deploy-prod')
-    needs: build
-    runs-on: ubuntu-latest
-    environment: "production"
-    steps:
-      - name: Wait for one approvals
+  # approval-wait:
+  #   # if: contains(github.event.head_commit.message, 'deploy-prod')
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   environment: "production"
+  #   steps:
+  #     - name: Wait for one approvals
 
   post-approval:
-    needs: approval-wait
+    # needs: approval-wait
     runs-on: ubuntu-latest
     steps:
     
