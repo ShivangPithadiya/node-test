@@ -21,15 +21,35 @@ jobs:
 
     - name: Install Dependencies
       run: npm install
+      
+  approval-wait:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for two approvals
+        uses: peter-evans/review-action@v3
+        with:
+          # Replace with actual usernames
+          reviewers: "raj121, pradip121"
+          required_reviews: 2
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build Docker Image
-      run: docker build --build-arg MY_VARIABLE="${{ env.MY_VARIABLE }}" -t shivang1012/node-test .
+  post-approval:
+    needs: approval-wait
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Build Docker Image
+        run: docker build --build-arg MY_VARIABLE="${{ env.MY_VARIABLE }}" -t shivang1012/node-test .
 
-    - name: Login to Docker Hub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
         
-    - name: Push Docker Image to Docker Hub
-      run: docker push shivang1012/node-test
+      - name: Push Docker Image to Docker Hub
+        run: docker push shivang1012/node-test
+
+
+    
