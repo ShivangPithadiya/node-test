@@ -25,13 +25,9 @@ jobs:
   approval-wait:
     needs: build
     runs-on: ubuntu-latest
+    environment: "production"
     steps:
       - name: Wait for two approvals
-        uses: mrmlnc/action-reviewers@v6
-        with:
-          reviewers: "Shivang-inventyv"
-          minimum_count: 1 
-          github-token: ${{ secrets.GITHUB_TOKEN }}
 
   post-approval:
     needs: approval-wait
