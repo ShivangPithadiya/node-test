@@ -30,7 +30,7 @@ jobs:
         uses: peter-evans/review-action@v3
         with:
           # Replace with actual usernames
-          reviewers: "raj121, pradip121"
+          reviewers: "Raj-inventyv, Pradip-Inventyv"
           required_reviews: 2
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
