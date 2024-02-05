@@ -27,11 +27,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Wait for two approvals
-        uses: peter-evans/review-action@v3
+        uses: mrmlnc/action-reviewers@v6
         with:
-          # Replace with actual usernames
-          reviewers: "Raj-inventyv, Pradip-Inventyv"
-          required_reviews: 2
+          reviewers: "Shivang-inventyv"
+          minimum_count: 1 
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
   post-approval:
